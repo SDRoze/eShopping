@@ -2,11 +2,13 @@ package dev.ecommerce.eshopping;
 
 import android.os.Bundle;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -24,11 +26,13 @@ import android.view.Menu;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -37,7 +41,31 @@ public class HomeActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         navigationView.setNavigationItemSelectedListener(this);
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bt_nav_bar);
+
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+
+                if (id == R.id.bt_home) {
+                    toolbar.setTitle("Home");
+                }
+                else if (id == R.id.bt_money) {
+                    toolbar.setTitle("Money");
+                }
+                else if (id == R.id.bt_ck_stock) {
+                    toolbar.setTitle("Check stock");
+                }
+                else if (id == R.id.bt_notification) {
+                    toolbar.setTitle("Notification");
+                }
+            }
+        });
+
     }
 
     @Override
@@ -78,18 +106,17 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_home) {
+        if (id == R.id.nav_history) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_setting) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_tools) {
-
-        }*/
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
