@@ -1,5 +1,6 @@
 package dev.ecommerce.eshopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,17 +23,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import dev.ecommerce.eshopping.Prevalent.Prevalent;
+import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Paper.init(this);
+
         final Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("eShopping");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -41,30 +49,15 @@ public class HomeActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bt_nav_bar);
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bt_nav_bar);
 
-        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
-            @Override
-            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
+        View headerView = navigationView.getHeaderView(0);
+        TextView UserNameTextView = headerView.findViewById(R.id.user_name);
+        CircleImageView profileImageView = headerView.findViewById(R.id.profile_image);
 
-                if (id == R.id.bt_home) {
-                    toolbar.setTitle("Home");
-                }
-                else if (id == R.id.bt_money) {
-                    toolbar.setTitle("Money");
-                }
-                else if (id == R.id.bt_ck_stock) {
-                    toolbar.setTitle("Check stock");
-                }
-                else if (id == R.id.bt_notification) {
-                    toolbar.setTitle("Notification");
-                }
-            }
-        });
+        UserNameTextView.setText(Prevalent.currentOnilneUser.getName());
 
     }
 
@@ -93,9 +86,9 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings)
+//           return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -110,8 +103,14 @@ public class HomeActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_setting) {
 
-        } else if (id == R.id.nav_logout) {
 
+        } else if (id == R.id.nav_logout) {
+            Paper.book().destroy();
+
+            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
