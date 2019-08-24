@@ -140,9 +140,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Welcome "+user.getName() +", Logged in successfully", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-//                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                                Prevalent.currentOnilneUser = user;
-//                                startActivity(intent);
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Prevalent.currentOnlineUser = user;
+                                startActivity(intent);
                             }
                         }
                     }
