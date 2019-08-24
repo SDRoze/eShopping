@@ -17,4 +17,7 @@
             android:icon="@drawable/logout"
             android:title="@string/menu_logout" />
     </group>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </menu>
