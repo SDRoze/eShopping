@@ -15,7 +15,7 @@
         android:icon="@drawable/ic_search"
         android:title="@string/nav_ckstock" />
     <item
-        android:id="@+id/bt_notification"
-        android:icon="@drawable/ic_notifications"
-        android:title="@string/nav_notification" />
+        android:id="@+id/bt_menu"
+        android:icon="@drawable/ic_menu"
+        android:title="@string/nav_menu" />
 </menu>
