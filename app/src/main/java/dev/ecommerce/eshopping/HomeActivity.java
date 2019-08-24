@@ -57,7 +57,9 @@ public class HomeActivity extends AppCompatActivity
         TextView UserNameTextView = headerView.findViewById(R.id.user_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.profile_image);
 
-        UserNameTextView.setText(Prevalent.currentOnilneUser.getName());
+        if (Prevalent.currentOnlineUser.getName() != null) {
+            UserNameTextView.setText(Prevalent.currentOnlineUser.getName());
+        }
 
     }
 
