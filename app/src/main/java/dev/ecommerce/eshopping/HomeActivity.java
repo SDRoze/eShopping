@@ -61,7 +61,7 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-    @Override
+    @Overrid
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
