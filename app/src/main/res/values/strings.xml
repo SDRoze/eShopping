@@ -3,7 +3,7 @@
     <string name="nav_home">Home</string>
     <string name="nav_money">Money</string>
     <string name="nav_scan">Scan</string>
-    <string name="nav_notification">Notification</string>
+    <string name="nav_menu">Menu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
