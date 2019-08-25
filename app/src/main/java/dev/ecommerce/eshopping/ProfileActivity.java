@@ -26,8 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView phoneProfile = findViewById(R.id.num_phone_profile);
         TextView addressProfile = findViewById(R.id.detail_address_profile);
 
-        nameProfile.setText(Prevalent.currentOnlineUser.getName());
-        phoneProfile.setText(Prevalent.currentOnlineUser.getPhone());
+//        nameProfile.setText(Prevalent.currentOnlineUser.getName());
+//        phoneProfile.setText(Prevalent.currentOnlineUser.getPhone());
 
 
         backArrow.setOnClickListener(new View.OnClickListener() {
